@@ -98,6 +98,7 @@ function refreshGlobalInfo(callback)
   BCRPC.call("getinfo", [], 0, null, function(context, id, result)
   {
     info = result;
+    info.balance = ( info.balance + info.newmint + info.stake );
     walletIsEncrypted = result.hasOwnProperty("unlocked_until");
     walletIsLocked = walletIsEncrypted && !result.unlocked_until;
     donationAddress = info.testnet ? "mhFwRrjRNt8hYeWtm9LwqCpCgXjF38RJqn" : "16MN18YuXFDyYFja2jHSeBUTgCpUByf5kv";
