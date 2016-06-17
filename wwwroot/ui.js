@@ -154,7 +154,7 @@ function updateGlobalInfo()
 {
   dojo.byId("currentWalletBalance").innerText = info.balance + " " + currency;
   dojo.byId("currentKeypoolSize").innerText = info.keypoolsize;
-  dojo.byId("currentDifficulty").innerText = info.difficulty;
+  dojo.byId("currentDifficulty").innerText = info.difficulty["proof-of-stake"] + " pos / " + info.difficulty["proof-of-work"]  + " pow";
   dojo.byId("currentBlocks").innerText = info.blocks;
   dojo.byId("currentConnections").innerText = info.connections;
   dijit.byId("lockWalletButton").set("disabled", !walletIsEncrypted || walletIsLocked);
