@@ -24,7 +24,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemalocation="http://www.w3.org/MarkUp/SCHEMA/xhtml11.xsd" xml:lang="en-US">
   <head>
-    <title>Bitcoin WebUI</title>
+    <title>PiggyStakes WebUI</title>
     <link rel="stylesheet" type="text/css"
           href="//ajax.googleapis.com/ajax/libs/dojo/1.7.1/dijit/themes/claro/claro.css"/>
     <link rel="stylesheet" type="text/css" href="style.css"/>
@@ -35,7 +35,7 @@
   </head>
   <body class="claro">
     <div id="loadingPlaceholder">
-      Loading Bitcoin WebUI...
+      Loading PiggyStakes WebUI...
     </div>
     <div id="rootContainer" data-dojo-type="dijit.layout.BorderContainer" data-dojo-props="gutters: false">
 
@@ -325,7 +325,7 @@
             </div>
             <div data-dojo-type="dijit.layout.ContentPane" title="Amount:">
               <input type="text" data-dojo-type="dijit.form.CurrencyTextBox" name="amount"
-                     data-dojo-props="required: true, currency: 'BTC', constraints: {places: '2,8'}"/>
+                     data-dojo-props="required: true, currency: 'PIGGY', constraints: {places: '2,8'}"/>
             </div>
             <div data-dojo-type="dijit.layout.ContentPane" title="Transaction comment:">
               <input type="text" data-dojo-type="dijit.form.TextBox" name="transactionComment"/>
@@ -414,7 +414,7 @@
             </div>
             <div data-dojo-type="dijit.layout.ContentPane" title="Remember for:">
               <input type="text" name="timeout" required="true" value="300"
-                     data-dojo-type="dijit.form.NumberTextBox" constraints="{min: 0, max: 86400, places: 0}"/>
+                     data-dojo-type="dijit.form.NumberTextBox" constraints="{min: 0, max: 31536000, places: 0}"/>
               seconds
             </div>
             <div data-dojo-type="dijit.layout.ContentPane">
