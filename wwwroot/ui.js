@@ -50,7 +50,7 @@ globalDeps = [
 ];
 
 
-var currency = "BTC";
+var currency = "PIGGY";
 var txnsPerRequest = 200;
 var txnFetchThreshold = 1000;
 var info = {};
