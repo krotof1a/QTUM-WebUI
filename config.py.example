@@ -1,9 +1,9 @@
 config = {
   "rpchost": "localhost",
-  "rpcport": 8332,
+  "rpcport": 54480,
   "rpcpath": "/",
-  "rpcusername": "rpcuser",
-  "rpcpassword": "rpcpass",
+  "rpcusername": "piggycoinrpcuser",
+  "rpcpassword": "piggycoinrpcpass",
   "bindip": "",
   "bindport": 8338,
   "pubkeyfile": "server.cert",
