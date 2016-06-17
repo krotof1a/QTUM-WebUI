@@ -110,21 +110,27 @@ function refreshGlobalInfo(callback)
 function refreshAccountList(callback)
 {
   dijit.byId("refreshButton").set("disabled", true);
-  BCRPC.call("listaccounts", [0], 0, null, function(context, id, result)
+  BCRPC.call("listreceivedbyaddress", [0, true], 0, null, function(context, id, receiveds)
   {
-    BCRPC.call("listreceivedbyaddress", [0, true], 0, null, function(context, id, received)
+    BCRPC.call("listunspent", [], 0, null, function(context, id, unspents)
     {
       refreshGlobalInfo(function()
       {
         accounts = {}
-        for (var i in result)
-          if (result.hasOwnProperty(i))
-            accounts[i] = {balance: result[i], addresses: {}};
-        for (var i in received)
-          if (received.hasOwnProperty(i) && accounts[received[i].account])
+        for (var i in receiveds)
+          if (receiveds.hasOwnProperty(i))
+            accounts[receiveds[i].account] = { balance: 0.0000, addresses: {} };
+        for (var i in unspents)
+          if (unspents.hasOwnProperty(i) && accounts[unspents[i].account])
+              accounts[unspents[i].account].balance = accounts[unspents[i].account].balance  + unspents[i].amount;
+        for (var i in unspents)
+          if (unspents.hasOwnProperty(i) && accounts[unspents[i].account])
           {
-            accounts[received[i].account].addresses[received[i].address] = received[i].amount;
-            addressToAccount[received[i].address] = received[i].account;
+            if ( accounts[unspents[i].account].addresses.hasOwnProperty(unspents[i].address) )
+              accounts[unspents[i].account].addresses[unspents[i].address] = accounts[unspents[i].account].addresses[unspents[i].address] + unspents[i].amount;
+            else
+              accounts[unspents[i].account].addresses[unspents[i].address] = unspents[i].amount;
+            addressToAccount[unspents[i].address] = unspents[i].account;
           }
         updateAccountList();
         refreshTransactionList(function()
