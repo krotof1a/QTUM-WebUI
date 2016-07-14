@@ -121,6 +121,9 @@ function refreshAccountList(callback)
         for (var i in receiveds)
           if (receiveds.hasOwnProperty(i))
             accounts[receiveds[i].account] = { balance: 0.0000, addresses: {} };
+        for (var i in receiveds)
+          if (receiveds.hasOwnProperty(i))
+            accounts[receiveds[i].account].addresses[receiveds[i].address] = 0.0000;
         for (var i in unspents)
           if (unspents.hasOwnProperty(i) && accounts[unspents[i].account])
               accounts[unspents[i].account].balance = accounts[unspents[i].account].balance  + unspents[i].amount;
