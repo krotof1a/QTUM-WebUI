@@ -1,14 +1,14 @@
 config = {
-  "rpchost": "localhost",
+  "rpchost": "piggycoind",
   "rpcport": 54480,
   "rpcpath": "/",
-  "rpcusername": "piggycoinrpcuser",
-  "rpcpassword": "piggycoinrpcpass",
+  "rpcusername": "PiggyRPC",
+  "rpcpassword": "RPCPassword",
   "bindip": "",
   "bindport": 8338,
   "pubkeyfile": "server.cert",
   "privkeyfile": "server.pem",
   "users": {
-    "webuser:webpass": "fullaccess",
+    "piggy:piggy": "fullaccess",
   },
 }
