@@ -1,14 +1,14 @@
 config = {
-  "rpchost": "piggycoind",
-  "rpcport": 54480,
+  "rpchost": "qtumd",
+  "rpcport": 3889,
   "rpcpath": "/",
-  "rpcusername": "PiggyRPC",
+  "rpcusername": "qtumrpc",
   "rpcpassword": "OneSuperStrongPassword",
   "bindip": "",
   "bindport": 8338,
   "pubkeyfile": "server.cert",
   "privkeyfile": "server.pem",
   "users": {
-    "piggy:piggy": "fullaccess",
+    "qtum:qtum": "fullaccess",
   },
 }
