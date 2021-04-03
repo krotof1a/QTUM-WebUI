@@ -50,7 +50,7 @@ globalDeps = [
 ];
 
 
-var currency = "PIGGY";
+var currency = "QTUM";
 var txnsPerRequest = 200;
 var txnFetchThreshold = 1000;
 var info = {};
@@ -95,16 +95,22 @@ function handleError(context, message, callback)
 
 function refreshGlobalInfo(callback)
 {
-  BCRPC.call("getinfo", [], 0, null, function(context, id, result)
+  BCRPC.call("getwalletinfo", [], 0, null, function(context, id, result)
   {
     info = result;
-    info.balance = ( info.balance + info.newmint + info.stake );
+    info.balance = ( info.balance + info.stake );
     walletIsEncrypted = result.hasOwnProperty("unlocked_until");
     walletIsLocked = walletIsEncrypted && !result.unlocked_until;
     donationAddress = info.testnet ? "mhFwRrjRNt8hYeWtm9LwqCpCgXjF38RJqn" : "16MN18YuXFDyYFja2jHSeBUTgCpUByf5kv";
-    updateGlobalInfo();
-    if (callback) callback();
-  }, handleError);
+    BCRPC.call("getblockchaininfo", [], 0, null, function(context, id, result)
+    {
+        info.blocks=result.blocks;
+	info.difficulty=result.difficulty;
+        info.chain=result.chain;
+	updateGlobalInfo();
+    	if (callback) callback();
+  	}, handleError);
+    }, handleError);
 }
 
 
@@ -164,9 +170,9 @@ function updateGlobalInfo()
 {
   dojo.byId("currentWalletBalance").innerText = info.balance + " " + currency;
   dojo.byId("currentKeypoolSize").innerText = info.keypoolsize;
-  dojo.byId("currentDifficulty").innerText = info.difficulty["proof-of-stake"] + " pos / " + info.difficulty["proof-of-work"]  + " pow";
+  dojo.byId("currentDifficulty").innerText = info.difficulty;
   dojo.byId("currentBlocks").innerText = info.blocks;
-  dojo.byId("currentConnections").innerText = info.connections;
+  dojo.byId("currentConnections").innerText = info.chain;
   dijit.byId("lockWalletButton").set("disabled", !walletIsEncrypted || walletIsLocked);
 }
 
