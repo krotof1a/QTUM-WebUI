@@ -78,6 +78,13 @@
         </div>
 
         <div data-dojo-type="dijit.MenuBarItem">
+          Staking
+          <script type="dojo/connect" data-dojo-event="onClick" data-dojo-args="evt">
+            getStakingInfo();
+          </script>
+        </div>
+
+        <div data-dojo-type="dijit.MenuBarItem">
           About
           <script type="dojo/connect" data-dojo-event="onClick" data-dojo-args="evt">
             dijit.byId("aboutDialog").show();
@@ -493,8 +500,14 @@
         <span style="font-weight: bold;" id="newAddressCreatedDialogAddressField"></span>
       </div>
 
+      <div id="stakingDialog" data-dojo-type="dijit.Dialog" title="Staking" style="width: 60ex;">
+        Enabled : <span style="font-weight: bold;" id="stakingField1"></span></br>
+        Active  : <span style="font-weight: bold;" id="stakingField2"></span></br>
+        Expected: <span style="font-weight: bold;" id="stakingField3"></span> days</br>
+      </div>
+
       <div id="aboutDialog" data-dojo-type="dijit.Dialog" title="About" style="width: 60ex;">
-        Bitcoin WebUI<br/>
+        Forked from Bitcoin WebUI<br/>
         Copyright (C) 2012 Michael Sparmann (TheSeven)<br/>
         <br/>
         This program is free software; you can redistribute it and/or

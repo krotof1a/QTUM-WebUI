@@ -92,6 +92,16 @@ function handleError(context, message, callback)
   dijit.byId("refreshButton").set("disabled", false);
 }
 
+function getStakingInfo()
+{
+  BCRPC.call("getstakinginfo", [], 0, null, function(context, id, result)
+  {
+    dojo.byId("stakingField1").innerText = result.enabled;
+    dojo.byId("stakingField2").innerText = result.staking;
+    dojo.byId("stakingField3").innerText = Math.round(result.expectedtime / 86400);
+    dijit.byId("stakingDialog").show();
+  }, handleError);
+}
 
 function refreshGlobalInfo(callback)
 {
